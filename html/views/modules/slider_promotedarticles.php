@@ -30,9 +30,9 @@
 							{
 							?>
 										<div>
-											<img u="image" src="slide/<?php echo $article['article_date_publie_html']; ?>/<?php echo $article['article_html']; ?>.jpg" />
+											<img u="image" src="https://cdn.phantase.net/article/<?php echo $article['article_html']; ?>_slide.jpg" />
 											<div u="thumb">
-												<img class="i" src="thumb/<?php echo $article['article_date_publie_html']; ?>/<?php echo $article['article_html']; ?>.jpg" />
+												<img class="i" src="https://cdn.phantase.net/article/<?php echo $article['article_html']; ?>_thumb.jpg" />
 												<div class="t"><?php echo $article['article_titre']; ?></div>
 												<div class="c"><?php echo $article['article_accroche']; ?></div>
 											</div>
