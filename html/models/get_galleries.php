@@ -47,6 +47,17 @@ function get_gallery($gallery)
 	return $galcontent;
 }
 
+function getGalleries()
+{
+	global $bdd;
+
+    $req = $bdd->prepare('SELECT bg.id, bg.name AS dir, count(bi.id) AS size FROM blog_images AS bi, blog_galleries AS bg WHERE bi.galleryid = bg.id GROUP BY bg.id, bg.name ORDER BY bg.id');
+	$req->execute();
+    $galleries = $req->fetchAll();
+
+    return $galleries;
+}
+
 function getGalleryImages($galname)
 {
 	global $bdd;

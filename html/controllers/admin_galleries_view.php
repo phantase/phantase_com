@@ -3,7 +3,7 @@
 // Retrieve all the galleries (MODELS)
 include_once('models/get_galleries.php');
 
-	$galleries = get_galleries();
+	$galleries = getGalleries();
 
 // On effectue du traitement sur les données (contrôleur)
 // Ici, on doit surtout sécuriser l'affichage
