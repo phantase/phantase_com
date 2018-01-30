@@ -1,0 +1,7 @@
+AuthUserFile /srv/data/web/vhosts/www.phantase.com/.htpasswd
+AuthName "Protected area"
+AuthType Basic
+
+<limit GET POST>
+require valid-user
+</limit>

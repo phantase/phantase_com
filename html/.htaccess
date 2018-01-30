@@ -1,0 +1,48 @@
+Options +FollowSymlinks
+RewriteEngine On
+RewriteBase /
+
+## IMAGETTES D ARTICLE
+RewriteRule	^slide/([0-9]+)/([0-9]+)/([0-9]+)/([a-zA-Z0-9_-]+).jpg$					img/article/$4_slide.jpg	[L]
+RewriteRule	^thumb/([0-9]+)/([0-9]+)/([0-9]+)/([a-zA-Z0-9_-]+).jpg$					img/article/$4_thumb.jpg	[L]
+RewriteRule	^cover/([0-9]+)/([0-9]+)/([0-9]+)/([a-zA-Z0-9_-]+).jpg$					img/article/$4_cover.jpg	[L]
+
+## IMAGES ET MINIATURES
+RewriteRule	^images/([a-zA-Z0-9_-]+)/full/([a-zA-Z0-9_-]+).jpg$						wp-content/gallery/$1/$2.jpg	[L]
+RewriteRule	^images/([a-zA-Z0-9_-]+)/thumb/([a-zA-Z0-9_-]+).jpg$					wp-content/gallery/$1/thumbs/thumbs_$2.jpg	[L]
+
+## NAVIGATION DANS LES PAGES VIA ACCUEIL
+RewriteRule	^page/([0-9]+)/$														index.php?action=home&page=$1	[L]
+
+## NAVIGATION DANS CATEGORIES
+RewriteRule	^category/([a-zA-Z0-9_-]+)/$											index.php?action=category&category=$1	[L]
+RewriteRule	^category/([a-zA-Z0-9_-]+)/page/([0-9]+)/$								index.php?action=category&category=$1&page=$2	[L]
+
+## VISUALISATION ARTICLES
+RewriteRule	^([0-9]{4})/([0-9]{2})/([0-9]{2})/([a-zA-Z0-9_-]+)/$					index.php?action=article&date=$1-$2-$3&article=$4	[L]
+RewriteRule	^([0-9]{4})/([0-9]{2})/([0-9]{2})/([a-zA-Z0-9_-]+)/([0-9]+)/$			index.php?action=article&date=$1-$2-$3&article=$4&page=$5	[L]
+
+## VISUALISATION PREVIEW ARTICLES
+RewriteRule	^preview/([0-9]{4})/([0-9]{2})/([0-9]{2})/([a-zA-Z0-9_-]+)/$			index.php?action=preview&date=$1-$2-$3&article=$4	[L]
+RewriteRule	^preview/([0-9]{4})/([0-9]{2})/([0-9]{2})/([a-zA-Z0-9_-]+)/([0-9]+)/$	index.php?action=preview&date=$1-$2-$3&article=$4&page=$5	[L]
+
+## SPECIAL POUR LOGIN/LOGOUT
+RewriteRule ^login/$																index.php?action=login	[L]
+RewriteRule ^dologin/$																controllers/loginandout.php	[L]
+RewriteRule ^dologout/$																controllers/loginandout.php	[L]
+
+## SPECIAL POUR ADMINISTRATION
+RewriteRule ^admin/$																index.php?action=admin	[L]
+RewriteRule ^admin/gallery/upload/$													index.php?action=upload	[L]
+RewriteRule ^admin/gallery/processupload/$											controllers/processupload.php	[L]
+RewriteRule ^admin/galleries/view/$													index.php?action=galleries [L]
+RewriteRule ^admin/gallery/([a-zA-Z0-9_-]+)/$										index.php?action=gallery&gallery=$1 [L]
+RewriteRule ^admin/articles/view/$													index.php?action=articles	[L]
+RewriteRule ^admin/article/write/$													index.php?action=write	[L]
+RewriteRule ^admin/article/processwrite/$											controllers/processwrite.php	[L]
+
+## MODIFICATION D UN ARTICLE
+RewriteRule	^write/([0-9]{4})/([0-9]{2})/([0-9]{2})/([a-zA-Z0-9_-]+)/$				index.php?action=write&date=$1-$2-$3&article=$4	[L]
+RewriteRule	^write/([0-9]{4})/([0-9]{2})/([0-9]{2})/([a-zA-Z0-9_-]+)/([0-9]+)/$		index.php?action=write&date=$1-$2-$3&article=$4&page=$5	[L]
+
+ErrorDocument 404																	/index.php?action=error

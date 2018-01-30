@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <meta charset="utf-8" />
+        <title>HTML5 Drag and Drop Multiple File Uploader | Script Tutorials</title>
+        <link href="css/main.css" rel="stylesheet" type="text/css" />
+
+        <!--[if lt IE 9]>
+          <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <header tabindex="0">
+            <h2>HTML5 Drag and Drop Multiple Image Uploader</h2>
+        </header>
+
+        <div class="container">
+            <div class="contr"><h2>Drag and Drop your images to 'Drop Area' (thumbnails will be automatically created)</h2></div>
+            <div class="upload_form_cont">
+                <div id="dropArea">Drop Area</div>
+
+                <div class="info">
+                    <div>Destination path: <input id="path" value=""/></div>
+                    <div>Files left: <span id="count">0</span></div>
+                    <canvas width="535" height="20"></canvas>
+                    <h2>Result:</h2>
+                    <div id="result"></div>
+                </div>
+            </div>
+        </div>
+        <script src="js/script.js"></script>
+    </body>
+</html>
