@@ -5,6 +5,10 @@ session_start();
 if( ! ( isset( $_SESSION['userid'] ) && $_SESSION['userid'] == 1 ) )
 	die("Not authorized");
 
+	include_once('../models/sql_connection.php');
+	include_once('../models/set_galleries.php');
+
+
 ############ Configuration ##############
 $thumb_square_size 		= 100; //Thumbnails will be cropped to 200x200 pixels
 $max_image_size 		= 500; //Maximum image size (height and width)
@@ -90,6 +94,31 @@ if(isset($_POST) /*&& isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_S
 			{
 				die('Error Creating thumbnail');
 			}
+
+			// lit les meta de l'image
+			$alt = "";
+			
+			$size = getimagesize($destination_folder . $new_file_name, $info);
+			if(isset($info['APP13']))
+			{
+				// On tente avec les IPTC
+				$iptc = iptcparse($info['APP13']);
+				//var_dump($iptc);
+				if( array_key_exists('2#120',$iptc) )
+					$alt = utf8_encode($iptc['2#120'][0]);
+				else if( array_key_exists('2#005',$iptc) )
+					$alt = utf8_encode($iptc['2#005'][0]);
+				
+			} else { // Sinon on tente avec les EXIF
+				$exif = exif_read_data($internaldir.$dir."/".$file);
+				//var_dump($exif);
+				if( array_key_exists('ImageDescription',$exif) )
+					$alt = utf8_encode($exif['ImageDescription']);
+				else if( array_key_exists('Title',$exif) )
+					$alt = utf8_encode($exif['Title']);
+			}
+
+			addImage($destination_path,$new_file_name,$alt);
 			
 			/* We have succesfully resized and created thumbnail image
 			We can now output image to user's browser or store information in the database*/
