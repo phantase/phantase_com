@@ -16,7 +16,7 @@
 foreach($galleryObj as $image)
 {
 ?>
-											<img src="images/<?php echo $gallery; ?>/thumb/<?php echo $image; ?>" id="<?php echo $image; ?>" />
+											<img src="https://cdn.phantase.net/gallery/<?php echo $gallery; ?>/thumbs/thumbs_<?php echo $image['name']; ?>" id="<?php echo $image['name']; ?>" />
 <?php
 }
 ?>
