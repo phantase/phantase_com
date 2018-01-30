@@ -118,6 +118,8 @@ if(isset($_POST) /*&& isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_S
 					$alt = utf8_encode($exif['Title']);
 			}
 
+			upload_image($destination_base, $destination_path, $new_file_name);
+
 			addImage($destination_path,$new_file_name,$alt);
 			
 			/* We have succesfully resized and created thumbnail image
@@ -130,7 +132,11 @@ if(isset($_POST) /*&& isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_S
 			
 echo <<<EOF
 <div class="s">
-		<p><a href="{$internal_path}{$destination_path}/{$internal_fullsize}{$new_file_name}" target="_blank"><img src="{$internal_path}{$destination_path}/{$internal_thumb}{$new_file_name}" /></a></p>
+		<p>
+			<a href="https://cdn.phantase.net/gallery/{$destination_path}/{$new_file_name}" target="_blank">
+				<img src="https://cdn.phantase.net/gallery/{$destination_path}/thumbs/thumbs_{$new_file_name}" />
+			</a>
+		</p>
     <p>{$new_file_name}</p>
 </div>
 EOF;
@@ -205,6 +211,48 @@ function save_image($source, $destination, $image_type, $quality){
 			break;
 		default: return false;
 	}
+}
+
+function upload_image($base, $directory, $file){
+	$remote_directory="/cdn_phantase_com/gallery/";
+
+	// set up basic connection 
+	$conn_id = ftp_connect($ftp_server);
+
+	// login with username and password 
+	$login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass); 
+
+	// goto passive mode
+	ftp_pasv($conn_id, true);
+
+	// create folder if needed
+	if(ftp_nlist($conn_id, $remote_directory.$directory)) {
+
+	} else {
+		ftp_chdir($conn_id, $remote_directory);
+		ftp_mkdir($conn_id, $directory);
+		ftp_chdir($conn_id, $remote_directory.$directory);
+		ftp_mkdir($conn_id, 'thumbs');
+	}
+
+	ftp_chdir($conn_id, $remote_directory.$directory);
+
+	// upload the full image
+	ftp_put($conn_id, $remote_directory.$directory.'/'.$file, $base.$directory.'/'.$file, FTP_BINARY);
+	// upload the thumb image
+	ftp_chdir($conn_id, $remote_directory.$directory.'/thumbs/');
+	ftp_put($conn_id, $remote_directory.$directory.'/thumbs/thumbs_'.$file, $base.$directory.'/thumbs/thumbs_'.$file, FTP_BINARY);
+
+	// close the connection 
+	ftp_close($conn_id); 
+
+	// remove uploaded files
+	// thumb and dir
+	unlink($base.$directory.'/thumbs/thumbs_'.$file);
+	rmdir($base.$directory.'/thumbs');
+	// full and dir
+	unlink($base.$directory.'/'.$file);
+	rmdir($base.$directory);
 }
 
 ?>
