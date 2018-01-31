@@ -214,6 +214,9 @@ function save_image($source, $destination, $image_type, $quality){
 }
 
 function upload_image($base, $directory, $file){
+	$ftp_server=""; 
+	$ftp_user_name=""; 
+	$ftp_user_pass="";
 	$remote_directory="/cdn_phantase_com/gallery/";
 
 	// set up basic connection 
