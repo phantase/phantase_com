@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Page - {{ page.id }} - {{ page.article }} - {{ page.numero }}</title>
+    </head>
+    <body>
+        <h1>Page - {{ page.id }} - {{ page.article }} - {{ page.numero }}</h1>
+        <p>{{ page.content }}</p>
+        <a href="/pages">Retour aux pages</a>
+        <a href="/article/id/{{ page.article }}">Retour à l'article</a>
+    </body>
+</html>
