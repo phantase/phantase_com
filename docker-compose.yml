@@ -34,3 +34,15 @@ services:
       - "2000:80"
     volumes:
       - "./html:/var/www/html"
+  
+  api:
+    depends_on:
+      - db
+    image: ftertre/damp
+    restart: always
+    links:
+      - db
+    ports:
+      - "2002:80"
+    volumes:
+      - "./api:/var/www"
