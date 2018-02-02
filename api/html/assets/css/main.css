@@ -64,6 +64,27 @@
 		font-size: 2em;
 	}
 
+	.container ul.imagelightbox li
+	{
+		display: inline-block;
+		margin: 0.3em; /* 10 */
+	}
+	.container ul.imagelightbox img
+	{
+		background-color: #FFFFFF;
+		border: 1px solid #A9A9A9;
+		display: block;
+		margin: 4px 0px 4px 4px;
+		padding: 4px;
+		position: relative;
+	}
+			
+	.container ul.imagelightbox img:hover,
+	.container ul.imagelightbox img:focus
+	{
+		background-color: #A9A9A9;
+	}
+
 /* Box Model */
 
 	*, *:before, *:after {

@@ -12,6 +12,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/imagelightbox.min.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 	</head>
 	<body class="subpage">
@@ -31,21 +32,8 @@
 											<header>
 												<h2>{{ article.titre }}</h2>
 												<h3>Par Phantase - {{ article.datepublie|date(null, "Europe/Paris") }}</h3>
-												<h3>{{ countgal }}</h3>
 											</header>
-											<ul>
-											{% for gallerie in galleries %}
-												<li>
-													<ul>
-														{% for item in gallerie %}
-														<li>{{ item }}</li>
-														{% endfor %}
-													</ul>
-												</li>
-											{% endfor %}
-											</ul>
-											<hr>
-											{{ page.content }}
+											{{ page_content }}
 										</section>
 
 								</div>
@@ -65,6 +53,6 @@
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
-
+			<script src="assets/js/imagelightbox.min.js"></script>
 	</body>
 </html>

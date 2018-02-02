@@ -2,7 +2,7 @@
 
 /*
  * HOW TO USE GALLERY TAG ?
- * [gallery dir=20090728chateauvalencay]
+ * [gallery dir=20090728chateauvalencay only=file.jpg;otherfile.jpg]
  */
 include_once('models/get_galleries.php');
 
