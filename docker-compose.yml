@@ -2,7 +2,6 @@ version: '2'
 services:
   db:
     image: mysql:5.7
-    restart: always
     volumes:
       - "./.data/db:/var/lib/mysql"
     environment:
@@ -15,7 +14,6 @@ services:
     depends_on:
       - db
     image: phpmyadmin/phpmyadmin
-    restart: always
     links:
       - db
     ports:
@@ -27,7 +25,6 @@ services:
     depends_on:
       - db
     image: ftertre/damp
-    restart: always
     links:
       - db
     ports:
@@ -39,7 +36,6 @@ services:
     depends_on:
       - db
     image: ftertre/damp
-    restart: always
     links:
       - db
     ports:
