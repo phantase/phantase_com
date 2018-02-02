@@ -1,5 +1,7 @@
 <?php
 
+namespace Objects;
+
 class CategorieEntity
 {
   protected $id;

@@ -13,7 +13,8 @@ $container['renderer'] = function ($c) {
 $container['view'] = function($c) {
     $settings = $c->get('settings')['twig'];
     $view = new \Slim\Views\Twig($settings['template_path'], [
-        'cache' => false//$settings['cache_path'],
+        'cache' => false,//$settings['cache_path'],
+        'autoescape' => false,
     ]);
 
     // Instantiate and add Slim specific extension

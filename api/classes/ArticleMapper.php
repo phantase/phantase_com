@@ -1,5 +1,7 @@
 <?php
 
+namespace Objects;
+
 class ArticleMapper extends Mapper
 {
   public function getArticles() {
@@ -12,7 +14,8 @@ class ArticleMapper extends Mapper
                     a.article_date_publie AS date_publie,
                     a.article_date_modifie AS date_modifie,
                     a.article_nbpages AS nbpages
-            FROM blog_articles a";
+            FROM blog_articles a
+            ORDER BY a.article_date_publie DESC";
     $stmt = $this->db->query($sql);
 
     $results = [];

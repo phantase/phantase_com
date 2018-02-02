@@ -1,5 +1,7 @@
 <?php
 
+namespace Objects;
+
 class PageMapper extends Mapper
 {
   public function getPages() {
@@ -61,8 +63,8 @@ class PageMapper extends Mapper
             FROM blog_pages c
             WHERE c.article_id = :article_id AND c.page_numero = :page_numero";
     $stmt = $this->db->prepare($sql);
-    $result = $stmt->execute(["article_id" => $article_id]);
-    $result = $stmt->execute(["page_numero" => $page_numero]);
+    $result = $stmt->execute(["article_id" => $article_id, 
+                              "page_numero" => $page_numero]);
 
     if($result) {
       return new PageEntity($stmt->fetch());

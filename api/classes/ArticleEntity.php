@@ -1,5 +1,7 @@
 <?php
 
+namespace Objects;
+
 class ArticleEntity
 {
   protected $id;

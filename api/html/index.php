@@ -2,6 +2,7 @@
 
 // Arbitrary set
 date_default_timezone_set('Europe/Paris');
+setlocale(LC_TIME, 'fr_FR.UTF8', 'fr.UTF8', 'fr_FR.UTF-8', 'fr.UTF-8');
 
 if (PHP_SAPI == 'cli-server') {
     // To help the built-in PHP dev server, check if the request was actually for
@@ -14,9 +15,6 @@ if (PHP_SAPI == 'cli-server') {
 }
 
 require __DIR__ . '/../vendor/autoload.php';
-spl_autoload_register(function ($classname) {
-    require ("../classes/" . $classname . ".php");
-});
 
 session_start();
 

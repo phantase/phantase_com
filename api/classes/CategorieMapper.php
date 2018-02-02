@@ -1,5 +1,7 @@
 <?php
 
+namespace Objects;
+
 class CategorieMapper extends Mapper
 {
   public function getCategories() {

@@ -3,6 +3,10 @@
 use Slim\Http\Request;
 use Slim\Http\Response;
 
+use Objects\ArticleMapper;
+use Objects\CategorieMapper;
+use Objects\PageMapper;
+
 // Routes
 
 $app->get('/articles', function (Request $request, Response $response, array $args) {
@@ -80,5 +84,29 @@ $app->get('/article/id/{id}/pages', function (Request $request, Response $respon
     $pages = $page_mapper->getPagesByArticle($article_id);
     return $this->view->render($response, 'pages.html', [
         'pages' => $pages,
+    ]);
+});
+
+
+
+
+$app->get('/{year}/{month}/{day}/{html}/{page}/', function (Request $request, Response $response, array $args) {
+    $article_html = $args['html'];
+    $article_mapper = new ArticleMapper($this->db);
+    $article = $article_mapper->getArticleByHtml($article_html);
+    $article_id = $article->getId();
+    $page_number = (int)$args['page'];
+    $page_mapper = new PageMapper($this->db);
+    $page = $page_mapper->getPageNumberByArticle($article_id, $page_number);
+    
+    // replace galleries and images pseudo-code by real-code
+    $page_content = $page->getContent();
+    preg_match_all("/\[gallery dir=[a-zA-Z0-9]*\]/", $page_content, $galleries_found);
+
+    return $this->view->render($response, 'base_article.html', [
+        'article' => $article,
+        'page' => $page,
+        'galleries' => $galleries_found,
+        'countgal' => count($galleries_found),
     ]);
 });
