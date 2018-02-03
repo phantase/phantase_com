@@ -58,9 +58,14 @@ class CategorieMapper extends Mapper
                     c.categorie_titre AS titre,
                     c.categorie_html AS html,
                     c.categorie_description AS description,
-                    c.categorie_parent_id AS parent_id
+                    c.categorie_parent_id AS parent_id,
+                    COUNT(ca.article_id) AS nbarticles
             FROM blog_categories c
-            WHERE c.categorie_html = :categorie_html";
+            JOIN blog_catarticles ca ON ca.categorie_id = c.categorie_id
+            JOIN blog_articles a ON ca.article_id = a.article_id
+            WHERE c.categorie_html = :categorie_html
+            AND a.article_publie = 1
+            GROUP BY c.categorie_id, c.categorie_titre, c.categorie_html, c.categorie_description, c.categorie_parent_id";
     $stmt = $this->db->prepare($sql);
     $result = $stmt->execute(["categorie_html" => $categorie_html]);
 

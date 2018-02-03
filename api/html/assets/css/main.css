@@ -213,7 +213,21 @@
 		clear:both;
 	}
 
+	.titre {
+		line-height: normal;
+		height: 2em;
+	}
 
+	.accroche {
+		line-height: normal;
+		height: 5em;
+	}
+
+	.bordered-feature-image:hover,
+	.bordered-feature-image:focus
+	{
+		background-color: #A9A9A9;
+	}
 
 /* Box Model */
 

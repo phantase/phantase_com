@@ -72,12 +72,16 @@
 					$('#titleBar, #navPanel, #page-wrapper')
 						.css('transition', 'none');
 
-			for (let index = 0; index < 20; index++) {
-				$( 'a[data-imagelightbox="gal'+index+'"]' ).imageLightbox({
-					activity: true,
-					caption: true,
-					navigation: true
-				});
+			try {
+				for (let index = 0; index < 20; index++) {
+					$( 'a[data-imagelightbox="gal'+index+'"]' ).imageLightbox({
+						activity: true,
+						caption: true,
+						navigation: true
+					});
+				}
+			} catch (error) {
+				
 			}
 
 	});

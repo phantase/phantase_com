@@ -9,6 +9,7 @@ class CategorieEntity
   protected $html;
   protected $description;
   protected $parent;
+  protected $nbarticles;
 
   public function __construct(array $data) {
     // no id if we're creating
@@ -20,6 +21,10 @@ class CategorieEntity
     $this->html = $data['html'];
     $this->description = $data['description'];
     $this->parent = $data['parent'];
+    // sometime we will not provide the number of articles
+    if(isset($data['nbarticles'])) {
+      $this->nbarticles = $data['nbarticles'];
+    }
   }
 
   public function getId() {
@@ -36,5 +41,8 @@ class CategorieEntity
   }
   public function getParent() {
     return $this->parent;
+  }
+  public function getNbarticles() {
+    return $this->nbarticles;
   }
 }

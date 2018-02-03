@@ -18,8 +18,11 @@
 	<body class="subpage">
 		<div id="page-wrapper">
 
-			{{ include('header.html') }}
-
+			<!-- Header -->
+      <div id="header-wrapper">
+				{{ include('header.html') }}
+			</div>
+			
 			<!-- Content -->
 				<div id="content-wrapper">
 					<div id="content">
@@ -33,7 +36,7 @@
 												<h2>{{ article.titre }}</h2>
 												<h3>Par Phantase - {{ article.datepublie|date(null, "Europe/Paris") }} - Classé dans : 
 													{% for categorie in categories %}
-														<a href="/category/{{ categorie.html }}">{{ categorie.titre }}</a>
+														<a href="/category/{{ categorie.html }}/">{{ categorie.titre }}</a>
 													{% endfor %}
 													{% if article.nbpages > 1 %}
 														- <span class="warningpages">Attention, cet article comporte {{ article.nbpages }} pages, changez de page en utilisant les liens situés en bas d'article.</span>

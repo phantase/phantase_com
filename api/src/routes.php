@@ -86,3 +86,34 @@ $app->get('/{year}/{month}/{day}/{html}/[{page}/]', function (Request $request, 
         'article_html' => $args['year'].'/'.$args['month'].'/'.$args['day'].'/'.$args['html'],
     ]);
 });
+
+$app->get('/category/{html}/[{page}/]', function (Request $request, Response $response, array $args) {
+    $categorie_html = $args['html'];
+
+    if( isset($args['page']) ) {
+        $page_number = (int)$args['page'];
+    } else {
+        $page_number = 1;
+    }
+
+    $limit = 12;
+    $offset = ($page_number - 1) * $limit;
+
+    $categorie_mapper = new CategorieMapper($this->db);
+    $categorie = $categorie_mapper->getCategorieByHtml($categorie_html);
+
+    $maincategories = $categorie_mapper->getMainCategories($categorie_html);
+
+    $nbpages = (int) ($categorie->getNbArticles() / $limit + 1);
+
+    $article_mapper = new ArticleMapper($this->db);
+    $articles = $article_mapper->getCategoryArticlesPaging($categorie->getId(), $offset, $limit);
+
+    return $this->view->render($response, 'category.html', [
+        'maincategories' => $maincategories,
+        'categorie' => $categorie,
+        'articles' => $articles,
+        'page_number' => $page_number,
+        'nbpages' => $nbpages,
+    ]);
+});

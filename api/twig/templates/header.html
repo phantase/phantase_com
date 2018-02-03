@@ -1,5 +1,3 @@
-			<!-- Header -->
-      <div id="header-wrapper">
         <header id="header" class="container">
           <div class="row">
             <div class="12u">
@@ -10,11 +8,10 @@
               <!-- Nav -->
                 <nav id="nav">
                   {% for categorie in maincategories %}
-                    <a href="/category/{{categorie.html}}">{{categorie.titre}}</a>
+                    <a href="/category/{{categorie.html}}/">{{categorie.titre}}</a>
                   {% endfor %}
                 </nav>
 
             </div>
           </div>
         </header>
-      </div>
