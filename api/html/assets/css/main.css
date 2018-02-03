@@ -108,6 +108,10 @@
 		background: #f0f0f0;
 	}
 
+	.article a {
+		color: #96a9b5 !important;
+	}
+
 /* Box Model */
 
 	*, *:before, *:after {
