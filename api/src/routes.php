@@ -77,7 +77,7 @@ $app->get('/{year}/{month}/{day}/{html}/[{page}/]', function (Request $request, 
         $page_content = str_replace($singlepics[0][$i],$singlepic_html, $page_content);
     }
 
-    return $this->view->render($response, 'base_article.html', [
+    return $this->view->render($response, 'article.html', [
         'maincategories' => $maincategories,
         'article' => $article,
         'categories' => $categories,
