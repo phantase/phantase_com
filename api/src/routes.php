@@ -117,3 +117,33 @@ $app->get('/category/{html}/[{page}/]', function (Request $request, Response $re
         'nbpages' => $nbpages,
     ]);
 });
+
+$app->get('/[page/{page}/]', function (Request $request, Response $response, array $args) {
+
+    if( isset($args['page']) ) {
+        $page_number = (int)$args['page'];
+    } else {
+        $page_number = 1;
+    }
+
+    $limit = 12;
+    $offset = ($page_number - 1) * $limit;
+
+    $categorie_mapper = new CategorieMapper($this->db);
+    $maincategories = $categorie_mapper->getMainCategories($categorie_html);
+
+    $article_mapper = new ArticleMapper($this->db);
+    $articles = $article_mapper->getArticlesPaging($offset, $limit);
+
+    $nbarticles = $article_mapper->countArticles();
+
+    $nbpages = (int) ($nbarticles / $limit + 1);
+
+    return $this->view->render($response, 'articles.html', [
+        'maincategories' => $maincategories,
+        'articles' => $articles,
+        'page_number' => $page_number,
+        'nbpages' => $nbpages,
+        'nbarticles' => $nbarticles,
+    ]);
+});
