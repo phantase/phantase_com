@@ -55,7 +55,7 @@ $app->get('/{year}/{month}/{day}/{html}/[{page}/]', function (Request $request, 
         }
         $page_content = str_replace($galleries[0][$i], '<ul class="imagelightbox">'.$gallerie_html.'</ul>', $page_content);
     }
-    $countsinglepics = preg_match_all("/\[singlepic dir=([\S]*) file=([\S]*) width=([0-9]*) height=([0-9]*)(?: float=([\S]*))?\]/", $page_content, $singlepics);
+    $countsinglepics = preg_match_all("/\[singlepic dir=([\S]*) file=([\S]*) (?:width|w)=([0-9]*)(?: (?:height|h)=([0-9]*))?(?: float=([\S]*))?\]/", $page_content, $singlepics);
     for ($i=0; $i < count($singlepics[0]); $i++) {
         $singlepic_dir = $singlepics[1][$i];
         $singlepic_file = $singlepics[2][$i];
