@@ -97,6 +97,10 @@ $app->get('/{year}/{month}/{day}/{html}/[{page}/]', function (Request $request, 
     $article_mapper = new ArticleMapper($this->db);
     $article = $article_mapper->getArticleByHtml($article_html);
     $article_id = $article->getId();
+
+    $categorie_mapper = new CategorieMapper($this->db);
+    $categories = $categorie_mapper->getArticleCategories($article_id);
+
     if( isset($args['page']) ) {
         $page_number = (int)$args['page'];
     } else {
@@ -153,6 +157,7 @@ $app->get('/{year}/{month}/{day}/{html}/[{page}/]', function (Request $request, 
 
     return $this->view->render($response, 'base_article.html', [
         'article' => $article,
+        'categories' => $categories,
         'page_content' => $page_content,
     ]);
 });

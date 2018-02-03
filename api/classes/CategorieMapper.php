@@ -52,4 +52,23 @@ class CategorieMapper extends Mapper
     }
   }
 
+  public function getArticleCategories($article_id) {
+    $sql = "SELECT c.categorie_id AS id, 
+                    c.categorie_titre AS titre,
+                    c.categorie_html AS html,
+                    c.categorie_description AS description,
+                    c.categorie_parent_id AS parent_id
+            FROM blog_categories c
+            JOIN blog_catarticles ca ON ca.categorie_id = c.categorie_id
+            WHERE ca.article_id = :article_id";
+     $stmt = $this->db->prepare($sql);
+     $result = $stmt->execute(["article_id" => $article_id]);
+ 
+     $results = [];
+     while($row = $stmt->fetch()) {
+       $results[] = new CategorieEntity($row);
+     }
+     return $results;
+  }
+
 }

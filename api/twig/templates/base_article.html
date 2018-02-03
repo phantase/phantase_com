@@ -31,7 +31,9 @@
 										<section class="article">
 											<header>
 												<h2>{{ article.titre }}</h2>
-												<h3>Par Phantase - {{ article.datepublie|date(null, "Europe/Paris") }}</h3>
+												<h3>Par Phantase - {{ article.datepublie|date(null, "Europe/Paris") }} - Classé dans : {% for categorie in categories %}
+													<a href="/category/{{ categorie.html }}">{{ categorie.titre }}</a>
+												{% endfor %}</h3>
 											</header>
 											{{ page_content }}
 										</section>
