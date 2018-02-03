@@ -92,18 +92,24 @@ $app->get('/article/id/{id}/pages', function (Request $request, Response $respon
 
 
 
-$app->get('/{year}/{month}/{day}/{html}/{page}/', function (Request $request, Response $response, array $args) {
+$app->get('/{year}/{month}/{day}/{html}/[{page}/]', function (Request $request, Response $response, array $args) {
     $article_html = $args['html'];
     $article_mapper = new ArticleMapper($this->db);
     $article = $article_mapper->getArticleByHtml($article_html);
     $article_id = $article->getId();
-    $page_number = (int)$args['page'];
+    if( isset($args['page']) ) {
+        $page_number = (int)$args['page'];
+    } else {
+        $page_number = 1;
+    }
     $page_mapper = new PageMapper($this->db);
     $page = $page_mapper->getPageNumberByArticle($article_id, $page_number);
     
     // replace galleries and singlepics pseudo-code by real-code
     $image_mapper = new ImageMapper($this->db);
     $page_content = $page->getContent();
+
+    $page_content = nl2br_save_html($page_content);
 
     $countgal = preg_match_all("/\[gallery dir=([\S]*)(?: only=([\S]*))?\]/", $page_content, $galleries);
     for ($i=0; $i < count($galleries[0]); $i++) { 

@@ -64,6 +64,10 @@
 		font-size: 2em;
 	}
 
+	.article {
+		line-height: normal;
+	}
+
 	.container ul.imagelightbox li
 	{
 		display: inline-block;
@@ -83,6 +87,25 @@
 	.container ul.imagelightbox img:focus
 	{
 		background-color: #A9A9A9;
+	}
+
+	table, th, td {
+		border: 1px solid #cccccc;
+		margin: 5px 0px;
+	}
+
+	th, td {
+		padding: 5px;
+	}
+
+	th {
+		font-weight: 700;
+		color: #333333;
+		background: #DDDDDD;
+	}
+
+	td {
+		background: #f0f0f0;
 	}
 
 /* Box Model */
