@@ -160,5 +160,7 @@ $app->get('/{year}/{month}/{day}/{html}/[{page}/]', function (Request $request, 
         'article' => $article,
         'categories' => $categories,
         'page_content' => $page_content,
+        'page_number' => $page_number,
+        'article_html' => $args['year'].'/'.$args['month'].'/'.$args['day'].'/'.$args['html'],
     ]);
 });

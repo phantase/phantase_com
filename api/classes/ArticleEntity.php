@@ -12,7 +12,7 @@ class ArticleEntity
   protected $promu;
   protected $datepublie;
   protected $datemodifie;
-  protected $nbPages;
+  protected $nbpages;
 
   public function __construct(array $data) {
     // no id if we're creating
