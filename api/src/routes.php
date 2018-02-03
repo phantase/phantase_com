@@ -101,6 +101,8 @@ $app->get('/{year}/{month}/{day}/{html}/[{page}/]', function (Request $request, 
     $categorie_mapper = new CategorieMapper($this->db);
     $categories = $categorie_mapper->getArticleCategories($article_id);
 
+    $maincategories = $categorie_mapper->getMainCategories();
+
     if( isset($args['page']) ) {
         $page_number = (int)$args['page'];
     } else {
@@ -157,6 +159,7 @@ $app->get('/{year}/{month}/{day}/{html}/[{page}/]', function (Request $request, 
     }
 
     return $this->view->render($response, 'base_article.html', [
+        'maincategories' => $maincategories,
         'article' => $article,
         'categories' => $categories,
         'page_content' => $page_content,
