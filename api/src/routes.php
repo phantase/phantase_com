@@ -146,13 +146,14 @@ $app->get('/{year}/{month}/{day}/{html}/[{page}/]', function (Request $request, 
         $image = $image_mapper->getImageByNames($singlepic_file,$singlepic_dir);
 
         if($image) {
-            $style = 'width:'.$singlepic_width.'px; height:'.$singlepic_height.'px;';
+            // $style = 'width:'.$singlepic_width.'px; height:'.$singlepic_height.'px;';
+            $style = 'width:'.$singlepic_width.'px;';
             if(strlen($singlepic_float) > 0){
                 $style .= ' float:'.$singlepic_float.';';
             }
             $singlepic_html = "<img src=\"https://cdn.phantase.net/gallery/".$image->getGalleryname()."/".$image->getName()."\" alt=\"".$image->getTitle()."\" style=\"".$style."\"/>";
         }
-        $page_content = str_replace($singlepics[0][$i], $singlepic_html, $page_content);
+        $page_content = str_replace($singlepics[0][$i],$singlepic_html, $page_content);
     }
 
     return $this->view->render($response, 'base_article.html', [
