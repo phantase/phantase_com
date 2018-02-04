@@ -62,6 +62,32 @@ class ArticleMapper extends Mapper
      return $results;
   }
 
+  public function getPromotedArticles($limit) {
+    $sql = "SELECT a.article_id AS id, 
+                    a.article_titre AS titre,
+                    a.article_html AS html,
+                    a.article_accroche AS accroche,
+                    a.article_publie AS publie,
+                    a.article_promu AS promu,
+                    a.article_date_publie AS date_publie,
+                    a.article_date_modifie AS date_modifie,
+                    a.article_nbpages AS nbpages
+            FROM blog_articles a
+            WHERE a.article_publie = 1
+            AND a.article_promu = 1
+            ORDER BY a.article_date_publie DESC
+            LIMIT :limit";
+     $stmt = $this->db->prepare($sql);
+     $stmt->bindParam('limit', $limit, \PDO::PARAM_INT);
+     $result = $stmt->execute();
+ 
+     $results = [];
+     while($row = $stmt->fetch()) {
+       $results[] = new ArticleEntity($row);
+     }
+     return $results;
+  }
+
   public function getCategoryArticles($category_id) {
     $sql = "SELECT a.article_id AS id, 
                     a.article_titre AS titre,

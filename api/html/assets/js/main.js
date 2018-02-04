@@ -84,6 +84,21 @@
 				
 			}
 
+			var currentSlide = 0;
+			setInterval(() => {
+				$('#slide_'+currentSlide).fadeOut(500);
+				// $('#slide_'+currentSlide).removeClass("slideshow");
+				// $('#slide_'+currentSlide).addClass("slidehide");
+				$('#slideritem_'+currentSlide).removeClass("itemshow");
+				$('#slideritem_'+currentSlide).addClass("itemhide");
+				currentSlide = (currentSlide == 2) ? 0 : currentSlide + 1;
+				$('#slide_'+currentSlide).fadeIn(500);
+				// $('#slide_'+currentSlide).addClass("slideshow");
+				// $('#slide_'+currentSlide).removeClass("slidehide");
+				$('#slideritem_'+currentSlide).addClass("itemshow");
+				$('#slideritem_'+currentSlide).removeClass("itemhide");
+			}, 5000);
+
 	});
 
 })(jQuery);

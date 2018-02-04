@@ -20,15 +20,54 @@
 			<!-- Header -->
       <div id="header-wrapper">
 				{{ include('header.html') }}
+
 				<div id="banner">
 					<div class="container">
 						<div class="row">
-							<div class="12u 12u(mobile)">
+							<div class="12u">
+		
+							{% if page_number == 1 %}
+								<div class="promotedslider">
+									<div class="sliderimage">
+										<img src="https://cdn.phantase.net/article/{{ promotedarticles[0].html }}_slide.jpg" style="visibility: hidden;">
+									{% set cpt = 0 %}
+									{% for promo in promotedarticles %}
+										{% if cpt == 0 %}
+											<img src="https://cdn.phantase.net/article/{{ promo.html }}_slide.jpg" id="slide_{{cpt}}">
+										{% else %}
+											<img src="https://cdn.phantase.net/article/{{ promo.html }}_slide.jpg" id="slide_{{cpt}}" style="display: none;">
+										{% endif %}
+										{% set cpt = cpt + 1 %}
+									{% endfor %}
+									</div>
+									<div class="slideritems">
+									{% set cpt = 0 %}
+									{% for promo in promotedarticles %}
+										{% if cpt == 0 %}
+											<div class="slideritem itemshow" id="slideritem_{{cpt}}">
+										{% else %}
+											<div class="slideritem itemhide" id="slideritem_{{cpt}}">
+										{% endif %}
+												<img src="https://cdn.phantase.net/article/{{ promo.html }}_thumb.jpg">
+												<h3 class="slideritemtitle">{{ promo.titre }}</h3>
+												<div class="slideritemabstract">{{ promo.accroche }}</div>
+												<div class="slideritemclear"></div>
+											</div>
+										{% set cpt = cpt + 1 %}
+									{% endfor %}
+									</div>
+									<div class="slideritemclear"></div>
+								</div>
+
+							{% else %}
 								<p>Articles plus anciens <i>(page {{ page_number }})</i></p>
+							{% endif %}
+
 							</div>
 						</div>
 					</div>
 				</div>
+
 			</div>
 			
 			<!-- Features -->

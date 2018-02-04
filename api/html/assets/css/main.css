@@ -2050,3 +2050,60 @@
 			}
 
 	}
+
+		/** Promoted Slider **/
+		.promotedslider {
+			border: 3px solid white;
+			height: 100%;
+			background-color: #000000;
+		}
+
+		.sliderimage {
+			float: left;
+			width: 70%;
+			line-height: 0;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.sliderimage img~img {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+		}
+
+		.slideritems {
+			float: left;
+			width: 28%;
+		}
+
+		.slideritem {
+			margin: 10px;
+		}
+
+		.slideritem > img {
+			border: 1px dashed white;
+			float: left;
+			margin-right: 10px;
+		}
+	
+		.slideritemtitle {
+			font-weight: 500;
+			line-height: normal;
+			color: #e7892b;
+		}
+		.slideritemabstract {
+			line-height: normal;
+			font-size: 0.8em;
+		}
+
+		.itemshow > img {
+			border: 1px solid white;
+		}
+		.itemshow > .slideritemabstract {
+			color: #d4975a;
+		}
+
+		.slideritemclear {
+			clear: both;
+		}

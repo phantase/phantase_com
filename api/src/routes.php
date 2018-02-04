@@ -128,12 +128,14 @@ $app->get('/[page/{page}/]', function (Request $request, Response $response, arr
 
     $limit = 12;
     $offset = ($page_number - 1) * $limit;
+    $promotedlimit = 3;
 
     $categorie_mapper = new CategorieMapper($this->db);
     $maincategories = $categorie_mapper->getMainCategories($categorie_html);
 
     $article_mapper = new ArticleMapper($this->db);
     $articles = $article_mapper->getArticlesPaging($offset, $limit);
+    $promotedarticles = $article_mapper->getPromotedArticles($promotedlimit);
 
     $nbarticles = $article_mapper->countArticles();
 
@@ -145,5 +147,6 @@ $app->get('/[page/{page}/]', function (Request $request, Response $response, arr
         'page_number' => $page_number,
         'nbpages' => $nbpages,
         'nbarticles' => $nbarticles,
+        'promotedarticles' => $promotedarticles,
     ]);
 });
