@@ -1,12 +1,12 @@
 				<div id="banner">
 					<div class="container">
-						<div class="row">
+						<!-- <div class="row">
 							<div class="12u">
 								<div style="border:solid 1px #A60000; font-size:1.0em; padding:0px 5px; color:#a0a8ab; ">
 								Attention, ce site n'est plus maintenu à jour autant qu'il devrait l'être... Mon <a style="color:#BF3730;" href="http://365.phantase.com">projet 365</a> me fait un peu délaisser cette partie. Vous pouvez retrouver les dernières photos sur le site du <a style="color:#BF3730;" href="http://365.phantase.com">projet 365</a> et les séries complètes sur mon <a style="color:#BF3730;" href="https://www.flickr.com/phantase/">Flickr</a>.
 								</div>
 							</div>
-						</div>
+						</div> -->
 						<div class="row">
 							<div class="12u">
 								<!-- Banner List Slider -->
@@ -26,15 +26,15 @@
 									<div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 900px; height: 300px;
 										overflow: hidden;">
 							<?php
-							foreach($articles as $article)
+							foreach($articlesPromoted as $articlePromoted)
 							{
 							?>
 										<div>
-											<img u="image" src="https://cdn.phantase.net/article/<?php echo $article['article_html']; ?>_slide.jpg" />
+											<img u="image" src="https://cdn.phantase.net/article/<?php echo $articlePromoted['article_html']; ?>_slide.jpg" />
 											<div u="thumb">
-												<img class="i" src="https://cdn.phantase.net/article/<?php echo $article['article_html']; ?>_thumb.jpg" />
-												<div class="t"><?php echo $article['article_titre']; ?></div>
-												<div class="c"><?php echo $article['article_accroche']; ?></div>
+												<img class="i" src="https://cdn.phantase.net/article/<?php echo $articlePromoted['article_html']; ?>_thumb.jpg" />
+												<div class="t"><?php echo $articlePromoted['article_titre']; ?></div>
+												<div class="c"><?php echo $articlePromoted['article_accroche']; ?></div>
 											</div>
 										</div>
 							<?php

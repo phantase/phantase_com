@@ -12,6 +12,10 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
+		<meta name="og:type" content="summary" />
+		<meta name="og:title" content="<?= $og_title ?>" />
+		<meta name="og:description" content="<?= $og_description ?>" />
+		<meta name="og:image" content="https://cdn.phantase.net/article/<?= $og_image ?>_cover.jpg" />
 		<link rel="shortcut icon" href="favicon.ico" />
 		<script src="js/jquery.min.js"></script>
 		<script src="js/skel.min.js"></script>

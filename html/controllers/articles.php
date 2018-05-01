@@ -1,5 +1,27 @@
 <?php
 
+$og_title = "Phantase - Photographe amateur";
+$og_description = "Site personnel de présentation de mes sessions de photos.";
+
+// Vérifie si la catégorie existe
+if( isset($category) )
+{
+    include_once('models/get_categories.php');
+    $categorie_titre = get_categoryTitle($category);
+    $og_description = "Catégorie ".$categorie_titre." de mon site personnel de présentation de mes sessions photos.";
+    if(!isset($categorie_titre))
+    {
+        $error = true;
+    }
+}
+
+if( isset($categorie_titre) )
+    $title = "Articles pour la catégorie : ".$categorie_titre." | ".$title;
+if( $page > 1 )
+    $title .= " | Page ".$page;
+
+$og_title = $title;
+
 // Retrieve all the articles (MODELS)
 include_once('models/get_articles.php');
 if(isset($category)) {
@@ -22,9 +44,11 @@ foreach($articles as $cle => $article)
     $articles[$cle]['article_date_publie_fr'] = utf8_encode(strftime('%d %b %Y',strtotime($article['article_date_publie'])));
 }
 
+$og_image = $articles[0]['article_html'];
+
 $pages = floor($numberOfArticles / $param_article_limit)+1;
 
 // On affiche la page (vue)
-include_once('views/modules/articles.php');
+include_once('views/category.php');
 
 ?>

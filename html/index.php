@@ -73,9 +73,9 @@ date_default_timezone_set('Europe/Paris');
 	else if( ( $action == "article" || $action == "preview" ) && isset($date) && isset($article) )
 		include_once('controllers/article.php');
 	else if( $action == "category" && isset($category) )
-		include_once('views/category.php');
+		include_once('controllers/articles.php');
 	else if( $action == "home" )
-		include_once('views/category.php');
+		include_once('controllers/articles.php');
 	else
 		$action = "error";
 			

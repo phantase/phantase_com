@@ -13,12 +13,16 @@ if( count($articlesArray) == 0 ) {
 	$articleObj = $articlesArray[0];
     $articleObj['article_id'] = $articleObj['article_id'];
     $articleObj['article_titre'] = htmlspecialchars($articleObj['article_titre']);
+    $articleObj['article_accroche'] = htmlspecialchars($articleObj['article_accroche']);
     $articleObj['article_html'] = $articleObj['article_html'];
     $articleObj['article_date_publie_html'] = utf8_encode(strftime('%Y/%m/%d',strtotime($articleObj['article_date_publie'])));
     $articleObj['article_date_publie_fr'] = utf8_encode(strftime('%d %B %Y',strtotime($articleObj['article_date_publie'])));
     $articleObj['article_date_modifie_fr'] = utf8_encode(strftime('%d %B %Y',strtotime($articleObj['article_date_modifie'])));
     $articleObj['article_nbpages'] = $articleObj['article_nbpages'];
-	$title = $articleObj['article_titre'];
+		$title = $articleObj['article_titre'];
+		$og_title = $articleObj['article_titre'];
+		$og_description = $articleObj['article_accroche'];
+		$og_image = $articleObj['article_html'];
     $pages = (int) $articleObj['article_nbpages'];
 	
 	$pageArray = get_articlePage($article,$page);

@@ -81,7 +81,7 @@ function get_article($article_html)
 {
 	global $bdd;
         
-    $req = $bdd->prepare('SELECT ba.article_id, ba.article_titre, ba.article_html, ba.article_date_publie, ba.article_date_modifie, ba.article_nbpages FROM blog_articles AS ba WHERE ba.article_publie=1 AND ba.article_html=:article_html');
+    $req = $bdd->prepare('SELECT ba.article_id, ba.article_titre, ba.article_accroche, ba.article_html, ba.article_date_publie, ba.article_date_modifie, ba.article_nbpages FROM blog_articles AS ba WHERE ba.article_publie=1 AND ba.article_html=:article_html');
     $req->bindParam(':article_html', $article_html, PDO::PARAM_STR);
 	$req->execute();
     $article = $req->fetchAll();
